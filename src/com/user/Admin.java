@@ -13,23 +13,28 @@ public class Admin extends User{
         super(name,no_tlp,gender);
     }
     
+    @Override
     public void login(){
         
     }
     
+    @Override
     public void logout(){
         
     }
     
+    @Override
     public void profile(){
         
     }
     
+    @Override
     public void registration(){
         
     }
     
-    public void twoStepVerfication(){
+    @Override
+    public void twoStepVerification(){
         
     }
     
