@@ -4,26 +4,26 @@
  */
 package com.views;
 
-/**
- *
- * @author iolux
- */
-
 import com.controllers.PagesController;
 import javax.swing.*;  
 import java.awt.*;  
 import java.awt.event.*;
 
-public class About extends javax.swing.JFrame implements ActionListener{
+/**
+ *
+ * @author iolux
+ */
+public class Home extends javax.swing.JFrame implements ActionListener {
 
     /**
-     * Creates new form About
+     * Creates new form Home
      */
-    public About() {
+    public Home() {
         initComponents();
-        this.setTitle("About");
+        this.setTitle("Home Page");
         
         this.jButton1.addActionListener(this);
+        this.jButton2.addActionListener(this);
     }
 
     /**
@@ -36,62 +36,72 @@ public class About extends javax.swing.JFrame implements ActionListener{
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("About KintonExpres");
-        jLabel1.setToolTipText("");
+        jLabel1.setText("Welcome To KintonExpress");
 
-        jLabel2.setText("KintonExpress Is A ");
+        jButton1.setText("About");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("Back");
+        jButton2.setText("Login");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(106, 106, 106)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(123, 123, 123)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(jButton1)))
-                .addContainerGap(148, Short.MAX_VALUE))
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2))
+                    .addComponent(jLabel1))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(69, 69, 69)
                 .addComponent(jLabel1)
-                .addGap(64, 64, 64)
-                .addComponent(jLabel2)
-                .addGap(65, 65, 65)
-                .addComponent(jButton1)
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(143, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if (ae.getSource() == this.jButton1){
-            new PagesController().viewMainPage();
+        if(ae.getSource() == this.jButton1){
+            new PagesController().viewAboutPage();
+            this.setVisible(false);
+        }else if(ae.getSource() == this.jButton2){
+            new PagesController().viewLoginPage();
             this.setVisible(false);
         }
     }
 
     
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
