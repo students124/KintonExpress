@@ -9,7 +9,7 @@ package com.interfaceable;
  * @author iolux
  */
 public interface Authenticable {
-    public abstract void login();
+    public abstract com.models.User.DataUser login();
     public abstract void logout();
     public abstract void profile();
     public abstract void registration();
