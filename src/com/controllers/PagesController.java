@@ -25,6 +25,7 @@ public class PagesController implements Serializable{
     private Home home;
     private AddBarang addBarang;
     private ListBarang listBarang;
+    private Registration regist;
     private User.DataUser user;
     
     public PagesController() throws ClassNotFoundException, SQLException{
@@ -34,6 +35,7 @@ public class PagesController implements Serializable{
         this.login = new Login();
         this.addBarang = new AddBarang();
         this.listBarang = new ListBarang();
+        this.regist = new Registration();
         this.home = new Home();
     }
        
@@ -97,7 +99,7 @@ public class PagesController implements Serializable{
 //        User.DataUser rs = FileHelper.loadConfigFromFile();
 
         while (!futureTask.isDone()) {
-            System.out.println("FutureTask is not finished yet..."); 
+            System.out.println("Loadin Session..."); 
         }
         
         User.DataUser rs = null;
@@ -148,6 +150,17 @@ public class PagesController implements Serializable{
         this.listBarang.setVisible(false);
         this.addBarang.setVisible(true);
         this.login.setVisible(false);
+    }
+    
+    public void viewRegistration(){
+        this.reset();
+        
+        this.home.setVisible(false);
+        this.about.setVisible(false);
+        this.dashboardadmin.setVisible(false);
+        this.dashboardpengirim.setVisible(false);
+        this.login.setVisible(false);
+        this.regist.setVisible(true);
     }
     
 //    Logic?

@@ -196,12 +196,22 @@ public class ListBarang extends javax.swing.JFrame implements ActionListener, Li
     public void actionPerformed(ActionEvent ae) {
         if(ae.getSource() == this.jButton1){
             try {
-                new PagesController().viewMainPage();
+                new PagesController().viewUserMenu();
             } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(ListBarang.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else if (ae.getSource() == this.jButton2){
             
+            dispose();
+        }else if (ae.getSource() == this.jButton2){
+            try {
+                new PagesController().viewAddBarang();
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(ListBarang.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(ListBarang.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            dispose();
         }
     }
     
