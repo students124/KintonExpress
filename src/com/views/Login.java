@@ -12,6 +12,7 @@ import java.awt.*;
 import java.awt.event.*;
 import com.helper.FileHelper;
 import java.io.*;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -138,7 +139,13 @@ public class Login extends javax.swing.JFrame implements ActionListener, Seriali
     @Override
     public void actionPerformed(ActionEvent ae) {
         if(ae.getSource() == this.jButton1){
-            new PagesController().viewMainPage();
+            try {
+                new PagesController().viewMainPage();
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
             this.setVisible(false);
         }else if(ae.getSource() == this.jButton2){
             String nama,id;
@@ -153,6 +160,8 @@ public class Login extends javax.swing.JFrame implements ActionListener, Seriali
                     new PagesController().viewUserMenu();
                     dispose();
                 } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }else{

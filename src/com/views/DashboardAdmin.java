@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.*;
 import com.helper.FileHelper;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,6 +28,7 @@ public class DashboardAdmin extends javax.swing.JFrame implements ActionListener
         initComponents();
         
         this.jButton1.addActionListener(this);
+        this.jButton2.addActionListener(this);
     }
 
     /**
@@ -40,6 +42,7 @@ public class DashboardAdmin extends javax.swing.JFrame implements ActionListener
 
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,25 +50,34 @@ public class DashboardAdmin extends javax.swing.JFrame implements ActionListener
 
         jButton1.setText("Logout");
 
+        jButton2.setText("List Barang");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(132, 132, 132)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
-                    .addComponent(jLabel1))
-                .addContainerGap(189, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(132, 132, 132)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(jButton1)
+                        .addGap(55, 55, 55)
+                        .addComponent(jButton2)))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(100, 100, 100)
-                .addComponent(jButton1)
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addGap(104, 104, 104)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
 
         pack();
@@ -75,6 +87,7 @@ public class DashboardAdmin extends javax.swing.JFrame implements ActionListener
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 
@@ -82,7 +95,18 @@ public class DashboardAdmin extends javax.swing.JFrame implements ActionListener
     public void actionPerformed(ActionEvent ae) {
         if(ae.getSource() == this.jButton1){
             FileHelper.saveConfigToFile(null);
-            new PagesController().viewLoginPage();
+            try {
+                new PagesController().viewLoginPage();
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(DashboardAdmin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            dispose();
+        }else if(ae.getSource() == this.jButton2){
+            try {
+                new PagesController().viewListBarang();
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(DashboardAdmin.class.getName()).log(Level.SEVERE, null, ex);
+            }
             dispose();
         }
     }

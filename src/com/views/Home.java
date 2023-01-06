@@ -8,6 +8,9 @@ import com.controllers.PagesController;
 import javax.swing.*;  
 import java.awt.*;  
 import java.awt.event.*;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -88,10 +91,22 @@ public class Home extends javax.swing.JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if(ae.getSource() == this.jButton1){
-            new PagesController().viewAboutPage();
-            this.setVisible(false);
+            try {
+                new PagesController().viewAboutPage();
+                this.setVisible(false);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else if(ae.getSource() == this.jButton2){
-            new PagesController().viewLoginPage();
+            try {
+                new PagesController().viewLoginPage();
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            }
             this.setVisible(false);
         }
     }

@@ -5,6 +5,9 @@
 package com.main;
 
 import com.controllers.PagesController;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -12,11 +15,17 @@ import com.controllers.PagesController;
  */
 
 public class Main {
-    static void app(){
+    static void app() throws ClassNotFoundException, SQLException{
         new PagesController().viewMainPage();
     }
     
     public static void main(String[] args) {
-        app();
+        try {
+            app();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

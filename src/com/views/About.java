@@ -13,6 +13,9 @@ import com.controllers.PagesController;
 import javax.swing.*;  
 import java.awt.*;  
 import java.awt.event.*;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class About extends javax.swing.JFrame implements ActionListener{
 
@@ -82,7 +85,13 @@ public class About extends javax.swing.JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == this.jButton1){
-            new PagesController().viewMainPage();
+            try {
+                new PagesController().viewMainPage();
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(About.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(About.class.getName()).log(Level.SEVERE, null, ex);
+            }
             this.setVisible(false);
         }
     }

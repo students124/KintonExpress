@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS barang(
 	nama_barang VARCHAR(100) NOT NULL,
 	berat_barang INT,
 	kuantitas_barang INT,
-	harga_barang INT,
+	harga_barang double,
 	tipe_barang VARCHAR(50),
 	PRIMARY KEY(id_barang)
 );
