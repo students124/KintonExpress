@@ -161,11 +161,28 @@ public class AddBarang extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 
+    public void showError(String msg){
+        JLabel label = new JLabel(msg);
+        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setVerticalTextPosition(JLabel.BOTTOM);
+        label.setHorizontalTextPosition(JLabel.CENTER);
+        JOptionPane.showMessageDialog(null, label, "Error", JOptionPane.PLAIN_MESSAGE);
+    }
+    
+    public void showSuccess(String msg){
+        JLabel label = new JLabel(msg);
+        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setVerticalTextPosition(JLabel.BOTTOM);
+        label.setHorizontalTextPosition(JLabel.CENTER);
+        JOptionPane.showMessageDialog(null, label, "Success", JOptionPane.PLAIN_MESSAGE);
+    }
+    
     @Override
     public void actionPerformed(ActionEvent ae) {
         if(ae.getSource() == this.jButton1){
             try {
-                new PagesController().viewMainPage();
+                new PagesController().viewUserMenu();
+                dispose();
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(AddBarang.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
@@ -180,7 +197,17 @@ public class AddBarang extends javax.swing.JFrame implements ActionListener {
             harga = this.jTextField4.getText();
             tipe = this.jTextField5.getText();
             
-            
+            try {
+                if(new Barang().insertData(nama, berat, kuantitas, harga, tipe)){
+                    this.showSuccess("Insert an Barang was Success!");
+                    new PagesController().viewListBarang();
+                    dispose();
+                }else{
+                    this.showError("Failed To Insert an Barang");
+                }
+            } catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(AddBarang.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }

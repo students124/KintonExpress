@@ -57,6 +57,33 @@ public class Barang {
         return result;
     }
     
+    public boolean insertData(String nama, String berat, String kuantitas, String harga, String tipe) throws SQLException{
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            
+            String query = "INSERT INTO barang(nama_barang,berat_barang,kuantitas_barang,harga_barang,tipe_barang) VALUES(?,?,?,?,?)";
+            
+            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/kintonexpress", "root", "");
+            PreparedStatement prepStmt = connect.prepareStatement(query);
+//            prepStmt.setInt(1, Integer.parseInt(nilai));
+            prepStmt.setString(1, nama);
+            prepStmt.setInt(2, Integer.parseInt(berat));
+            prepStmt.setInt(3, Integer.parseInt(kuantitas));
+            prepStmt.setDouble(4, Double.parseDouble(harga));
+            prepStmt.setString(5, tipe);
+            
+            prepStmt.executeUpdate();
+            
+            connect.close();
+            
+            return true;
+        } catch (ClassNotFoundException E){
+            System.out.println(E);
+        }
+        
+        return false;
+    }
+    
     public class DataBarang{
         private String nama,tipe;
         private int berat,kuantitas;
