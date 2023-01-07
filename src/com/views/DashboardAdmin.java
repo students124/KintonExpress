@@ -29,6 +29,7 @@ public class DashboardAdmin extends javax.swing.JFrame implements ActionListener
         
         this.jButton1.addActionListener(this);
         this.jButton2.addActionListener(this);
+
     }
 
     /**
@@ -44,6 +45,7 @@ public class DashboardAdmin extends javax.swing.JFrame implements ActionListener
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Admin Page");
@@ -51,6 +53,7 @@ public class DashboardAdmin extends javax.swing.JFrame implements ActionListener
         jButton1.setText("Logout");
 
         jButton2.setText("List Barang");
+
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,6 +91,7 @@ public class DashboardAdmin extends javax.swing.JFrame implements ActionListener
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 

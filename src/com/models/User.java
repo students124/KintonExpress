@@ -62,6 +62,7 @@ public class User implements Authenticable, Serializable{
         }
         return null;
     }
+
     
     public boolean register(String id, String nama,String no_telp ,int gender, int userType)throws SQLException{
         try{
@@ -89,6 +90,7 @@ public class User implements Authenticable, Serializable{
         
         return false;
     }
+
 
     @Override
     public void logout() {
@@ -179,4 +181,5 @@ public class User implements Authenticable, Serializable{
     }
     
     
+
 }

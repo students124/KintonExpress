@@ -71,5 +71,6 @@
         <Property name="text" type="java.lang.String" value="List Barang"/>
       </Properties>
     </Component>
+
   </SubComponents>
 </Form>

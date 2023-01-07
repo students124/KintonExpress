@@ -8,10 +8,12 @@ import com.models.User;
 import com.helper.FileHelper;
 import com.views.*;
 import java.io.Serializable;
+
 import java.sql.SQLException;
 import java.util.concurrent.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 /**
  *
@@ -23,9 +25,11 @@ public class PagesController implements Serializable{
     private DashboardPengirim dashboardpengirim;
     private Login login;
     private Home home;
+
     private AddBarang addBarang;
     private ListBarang listBarang;
     private Registration regist;
+
     private User.DataUser user;
     
     public PagesController() throws ClassNotFoundException, SQLException{
@@ -88,6 +92,7 @@ public class PagesController implements Serializable{
         this.login.setVisible(false);
     }
     
+
     /**
      *
      * @throws ClassNotFoundException
@@ -110,6 +115,7 @@ public class PagesController implements Serializable{
         }
         
                 
+
         this.setUser(rs);
         
         this.reset();
@@ -162,6 +168,7 @@ public class PagesController implements Serializable{
         this.login.setVisible(false);
         this.regist.setVisible(true);
     }
+
     
 //    Logic?
     
