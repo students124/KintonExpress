@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.io.Serializable;
 import com.interfaceable.Authenticable;
+import com.helper.FileHelper;
 import java.sql.PreparedStatement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -137,6 +138,43 @@ public class User implements Authenticable, Serializable{
         public String getNama(){
             return this.nama;
         }
+        
+    }
+    
+    public class Admin implements Serializable{
+        private int type;
+        
+        public Admin() throws ClassNotFoundException {
+            User.DataUser user = FileHelper.loadConfigFromFile();
+            
+            this.type = user.getTypeUser();
+        }
+        
+        
+    }
+    
+    public class Pengirim implements Serializable{
+        private int type;
+        
+        public Pengirim() throws ClassNotFoundException{
+            User.DataUser user = FileHelper.loadConfigFromFile();
+            
+            this.type = user.getTypeUser();
+        }
+        
+        
+        
+    }
+    
+    public class Kurir implements Serializable{
+        private int type;
+        
+        public Kurir() throws ClassNotFoundException{
+            User.DataUser user = FileHelper.loadConfigFromFile();
+            
+            this.type = user.getTypeUser();
+        }
+        
         
     }
     
