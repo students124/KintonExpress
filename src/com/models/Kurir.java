@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  *
  * @author iolux
  */
-public class Kurir extends User {
+public class Kurir extends User implements Serializable{
     
     private String tipe_kendaraan;
     
@@ -147,13 +147,16 @@ public class Kurir extends User {
             
             DataUser data = SessionHelper.loadConfigFromFile();
             
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/kintonexpress", "root", "");
-            Statement stmt = connect.createStatement();
-            
-            ResultSet rs = stmt.executeQuery("SELECT * FROM kurir WHERE userId = '" + data.getId()  + "'");
-            
-            while(rs.next()){
-                result = rs.getString("location");
+            if (data != null){
+                Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/kintonexpress", "root", "");
+                Statement stmt = connect.createStatement();
+
+                ResultSet rs = stmt.executeQuery("SELECT * FROM kurir WHERE userId = '" + data.getId()  + "'");
+
+                while(rs.next()){
+                    result = rs.getString("location");
+                }
+
             }
             
             return result;

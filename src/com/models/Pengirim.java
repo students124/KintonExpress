@@ -117,7 +117,6 @@ public class Pengirim extends User implements Memberable, Serializable{
             
             Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/kintonexpress", "root", "");
             PreparedStatement prepStmt = connect.prepareStatement(query);
-//            prepStmt.setInt(1, Integer.parseInt(nilai));
             prepStmt.setBoolean(1, memberStatus);
             
             prepStmt.executeUpdate();

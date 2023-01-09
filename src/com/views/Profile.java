@@ -8,6 +8,7 @@ package com.views;
 import com.controllers.PagesController;
 import com.helper.SessionHelper;
 import java.io.Serializable;
+import com.models.*;
 import java.awt.event.*;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -22,8 +23,18 @@ public class Profile extends javax.swing.JFrame implements Serializable, ActionL
     /**
      * Creates new form Profile
      */
-    public Profile() {
+    public Profile() throws ClassNotFoundException {
         initComponents();
+        User.DataUser data = SessionHelper.loadConfigFromFile();
+        
+        if(data != null){
+            this.jLabel3.setText(data.getNama());
+            this.jLabel5.setText(data.getNama());
+            this.jLabel7.setText(data.getNama());
+        }
+        
+        this.jButton1.addActionListener(this);
+        this.jButton2.addActionListener(this);
     }
 
     /**
