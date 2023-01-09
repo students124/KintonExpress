@@ -12,7 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.io.Serializable;
 import com.interfaceable.*;
-import com.helper.FileHelper;
+import com.helper.SessionHelper;
 import java.sql.PreparedStatement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,7 +33,7 @@ public class Kurir extends User {
             Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/kintonexpress", "root", "");
             Statement stmt = connect.createStatement();
             
-            ResultSet rs = stmt.executeQuery("SELECT * FROM user WHERE userId = '" + id  + "'");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM kurir WHERE userId = '" + id  + "'");
             
             while(rs.next()){
                 result = new DataUser(rs.getString("nama"), rs.getString("userId"), rs.getInt("userType"));
@@ -46,8 +46,7 @@ public class Kurir extends User {
         return null;
     }
 
-    @Override
-    public boolean register(String id, String nama, String no_telp, int gender, int userType) {
+    public boolean register(String id, String nama, String no_telp, String gender, String tipe_kendaraan) {
         try {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
@@ -55,16 +54,16 @@ public class Kurir extends User {
                 Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            String query = "INSERT INTO user(userId,nama,gender,userType,no_telp) VALUES(?,?,?,?,?)";
+            String query = "INSERT INTO kurir(userId, nama,no_telp,gender,tipe_kendaraan) VALUES(?,?,?,?,?)";
             
             Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/kintonexpress", "root", "");
             PreparedStatement prepStmt = connect.prepareStatement(query);
 //            prepStmt.setInt(1, Integer.parseInt(nilai));
             prepStmt.setString(1, id);
             prepStmt.setString(2, nama);
-            prepStmt.setInt(3, gender);
-            prepStmt.setInt(4, userType);
-            prepStmt.setString(5, no_telp);
+            prepStmt.setString(3, no_telp);
+            prepStmt.setString(4, gender);
+            prepStmt.setString(5, tipe_kendaraan);
 
             prepStmt.executeUpdate();
 
@@ -98,6 +97,11 @@ public class Kurir extends User {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    @Override
+    public boolean register(String id, String nama, String no_telp, String gender) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }

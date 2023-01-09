@@ -1,10 +1,25 @@
-CREATE TABLE IF NOT EXISTS user(
-	userId VARCHAR(5) NOT NULL,
-	nama VARCHAR(80),
-	gender INT,
-	userType INT,
-	PRIMARY KEY (userId)
+CREATE TABLE IF NOT EXISTS admin(
+	userId VARCAHR(5) NOT NULL,
+	nama VARCHAR(20),
+	no_telp VARCHAR(20),
+	gender VARCHAR(10),
 );
+
+CREATE TABLE IF NOT EXISTS pengirim(
+        userId VARCAHR(5) NOT NULL,
+        nama VARCHAR(20),
+        no_telp VARCHAR(20),
+        gender VARCHAR(10),
+);
+
+CREATE TABLE IF NOT EXISTS kurir(
+        userId VARCAHR(5) NOT NULL,
+        nama VARCHAR(20),
+        no_telp VARCHAR(20),
+        gender VARCHAR(10),
+	tipe_kendaraan(10)
+);
+
 
 CREATE TABLE IF NOT EXISTS barang(
 	id_barang INT NOT NULL AUTO_INCREMENT,
@@ -15,18 +30,3 @@ CREATE TABLE IF NOT EXISTS barang(
 	tipe_barang VARCHAR(50),
 	PRIMARY KEY(id_barang)
 );
-
-CREATE TABLE IF NOT EXISTS kurir_antar(
-	userId VARCHAR(5) NOT NULL,
-	tipe_kendaraan VARCHAR(50),
-	FOREIGN KEY (userId) REFERENCES user(userId)
-);
-
-CREATE TABLE IF NOT EXISTS pengirim(
-	userId VARCHAR(5) NOT NULL,
-	id_barang INT NOT NULL,
-	FOREIGN KEY (userId) REFERENCES user(userId),
-	FOREIGN KEY (id_barang) REFERENCES barang(id_barang)
-);
-
---CREATE TABLE IF NOT EXISTS pengiriman();

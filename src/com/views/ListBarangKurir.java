@@ -19,14 +19,14 @@ import com.controllers.PagesController;
  *
  * @author iolux
  */
-public class ListBarang extends javax.swing.JFrame implements ActionListener, ListSelectionListener{
+public class ListBarangKurir extends javax.swing.JFrame implements ActionListener, ListSelectionListener{
 
     /**
      * Creates new form ListBarang
      * @throws java.lang.ClassNotFoundException
      * @throws java.sql.SQLException
      */
-    public ListBarang() throws ClassNotFoundException, SQLException {
+    public ListBarangKurir() throws ClassNotFoundException, SQLException {
         initComponents();
         DefaultListModel list = new DefaultListModel();
         ArrayList<Barang.DataBarang> result = new Barang().getAll();
@@ -91,7 +91,7 @@ public class ListBarang extends javax.swing.JFrame implements ActionListener, Li
 
         jButton1.setText("Back");
 
-        jButton2.setText("Add More Barang");
+        jButton2.setText("Update Location");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,7 +130,7 @@ public class ListBarang extends javax.swing.JFrame implements ActionListener, Li
                     .addGroup(layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addComponent(jButton1)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,19 +196,17 @@ public class ListBarang extends javax.swing.JFrame implements ActionListener, Li
     public void actionPerformed(ActionEvent ae) {
         if(ae.getSource() == this.jButton1){
             try {
-                new PagesController().viewUserMenu();
+                new PagesController().viewDashboardKurir();
             } catch (ClassNotFoundException | SQLException ex) {
-                Logger.getLogger(ListBarang.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ListBarangKurir.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             dispose();
         }else if (ae.getSource() == this.jButton2){
             try {
                 new PagesController().viewAddBarang();
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(ListBarang.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(ListBarang.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(ListBarangKurir.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             dispose();
@@ -248,10 +246,8 @@ public class ListBarang extends javax.swing.JFrame implements ActionListener, Li
                 this.jTextField4.setText(res.getHarga() + "");
                 this.jTextField5.setText(res.getTipe());
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(ListBarang.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ListBarang.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(ListBarangKurir.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

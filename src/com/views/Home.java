@@ -117,7 +117,7 @@ public class Home extends javax.swing.JFrame implements ActionListener {
             dispose();
         }else if(ae.getSource() == this.jButton3){
             try {
-                new PagesController().viewRegistration();
+                new PagesController().viewRegistOption();
             } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }

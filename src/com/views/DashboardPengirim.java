@@ -7,7 +7,7 @@ package com.views;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
-import com.helper.FileHelper;
+import com.helper.SessionHelper;
 import com.controllers.PagesController;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -80,12 +80,10 @@ public class DashboardPengirim extends javax.swing.JFrame implements ActionListe
     @Override
     public void actionPerformed(ActionEvent ae) {
         if(ae.getSource() == this.jButton1){
-            FileHelper.saveConfigToFile(null);
+            SessionHelper.saveConfigToFile(null);
             try {
                 new PagesController().viewLoginPage();
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(DashboardPengirim.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
+            } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(DashboardPengirim.class.getName()).log(Level.SEVERE, null, ex);
             }
             dispose();

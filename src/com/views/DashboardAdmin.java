@@ -9,7 +9,7 @@ import com.models.User;
 import javax.swing.*;  
 import java.awt.*;  
 import java.awt.event.*;
-import com.helper.FileHelper;
+import com.helper.SessionHelper;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -59,13 +59,13 @@ public class DashboardAdmin extends javax.swing.JFrame implements ActionListener
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(132, 132, 132)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(69, 69, 69)
                         .addComponent(jButton1)
                         .addGap(55, 55, 55)
-                        .addComponent(jButton2)))
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(141, 141, 141)
+                        .addComponent(jLabel1)))
                 .addContainerGap(96, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -94,7 +94,7 @@ public class DashboardAdmin extends javax.swing.JFrame implements ActionListener
     @Override
     public void actionPerformed(ActionEvent ae) {
         if(ae.getSource() == this.jButton1){
-            FileHelper.saveConfigToFile(null);
+            SessionHelper.saveConfigToFile(null);
             try {
                 new PagesController().viewLoginPage();
             } catch (ClassNotFoundException | SQLException ex) {

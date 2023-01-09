@@ -9,7 +9,7 @@ import com.models.Barang;
 import javax.swing.*;  
 import java.awt.*;  
 import java.awt.event.*;
-import com.helper.FileHelper;
+import com.helper.SessionHelper;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -181,7 +181,7 @@ public class AddBarang extends javax.swing.JFrame implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         if(ae.getSource() == this.jButton1){
             try {
-                new PagesController().viewUserMenu();
+                new PagesController().viewListBarang();
                 dispose();
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(AddBarang.class.getName()).log(Level.SEVERE, null, ex);

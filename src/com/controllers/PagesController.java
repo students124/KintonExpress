@@ -5,7 +5,7 @@
 package com.controllers;
 
 import com.models.User;
-import com.helper.FileHelper;
+import com.helper.SessionHelper;
 import com.views.*;
 import java.io.Serializable;
 import java.sql.SQLException;
@@ -24,9 +24,16 @@ public class PagesController implements Serializable{
     private Login login;
     private Home home;
     private AddBarang addBarang;
-    private ListBarang listBarang;
-    private Registration regist;
+    private ListBarangPengirim listBarang;
     private User.DataUser user;
+    private RegistAdmin registAdmin;
+    private RegistPengirim registKirim;
+    private RegistKurir registKurir;
+    private RegistOption registOpt;
+    private DashboardKurir kurir;
+    private ListBarangPengirim barangPengirim;
+    private ListBarangKurir barangKurir;
+
     
     public PagesController() throws ClassNotFoundException, SQLException{
         this.about = new About();
@@ -34,9 +41,15 @@ public class PagesController implements Serializable{
         this.dashboardpengirim = new DashboardPengirim();
         this.login = new Login();
         this.addBarang = new AddBarang();
-        this.listBarang = new ListBarang();
-        this.regist = new Registration();
+        this.listBarang = new ListBarangPengirim();
         this.home = new Home();
+        this.registAdmin = new RegistAdmin();
+        this.registKirim = new RegistPengirim();
+        this.registKurir = new RegistKurir();
+        this.registOpt = new RegistOption();
+        this.kurir = new DashboardKurir();
+        this.barangPengirim = new ListBarangPengirim();
+        this.barangKurir = new ListBarangKurir();
     }
        
 //    Views
@@ -46,6 +59,15 @@ public class PagesController implements Serializable{
         this.dashboardadmin.setVisible(false);
         this.dashboardpengirim.setVisible(false);
         this.login.setVisible(false);
+        this.addBarang.setVisible(false);
+        this.listBarang.setVisible(false);
+        this.registAdmin.setVisible(false);
+        this.registKirim.setVisible(false);
+        this.registKurir.setVisible(false);
+        this.registOpt.setVisible(false);
+        this.kurir.setVisible(false);
+        this.barangPengirim.setVisible(false);
+        this.barangKurir.setVisible(false);
     }
     
     public void viewLoginPage(){
@@ -56,6 +78,15 @@ public class PagesController implements Serializable{
         this.dashboardadmin.setVisible(false);
         this.dashboardpengirim.setVisible(false);
         this.login.setVisible(true);
+        this.addBarang.setVisible(false);
+        this.listBarang.setVisible(false);
+        this.registAdmin.setVisible(false);
+        this.registKirim.setVisible(false);
+        this.registKurir.setVisible(false);
+        this.registOpt.setVisible(false);
+        this.kurir.setVisible(false);
+        this.barangPengirim.setVisible(false);
+        this.barangKurir.setVisible(false);
     }
     
     public void viewAboutPage(){
@@ -66,6 +97,15 @@ public class PagesController implements Serializable{
         this.dashboardadmin.setVisible(false);
         this.dashboardpengirim.setVisible(false);
         this.login.setVisible(false);
+        this.addBarang.setVisible(false);
+        this.listBarang.setVisible(false);
+        this.registAdmin.setVisible(false);
+        this.registKirim.setVisible(false);
+        this.registKurir.setVisible(false);
+        this.registOpt.setVisible(false);
+        this.kurir.setVisible(false);
+        this.barangPengirim.setVisible(false);
+        this.barangKurir.setVisible(false);
     }
     
     public void viewAdminPage(){
@@ -76,6 +116,15 @@ public class PagesController implements Serializable{
         this.dashboardadmin.setVisible(true);
         this.dashboardpengirim.setVisible(false);
         this.login.setVisible(false);
+        this.addBarang.setVisible(false);
+        this.listBarang.setVisible(false);
+        this.registAdmin.setVisible(false);
+        this.registKirim.setVisible(false);
+        this.registKurir.setVisible(false);
+        this.registOpt.setVisible(false);
+        this.kurir.setVisible(false);
+        this.barangPengirim.setVisible(false);
+        this.barangKurir.setVisible(false);
     }
     
     public void viewPengirimPage(){
@@ -86,46 +135,15 @@ public class PagesController implements Serializable{
         this.dashboardadmin.setVisible(false);
         this.dashboardpengirim.setVisible(true);
         this.login.setVisible(false);
-    }
-    
-    /**
-     *
-     * @throws ClassNotFoundException
-     */
-    public void viewUserMenu() throws ClassNotFoundException{
-        ExecutorService theardpool = Executors.newCachedThreadPool();
-        
-        Future<User.DataUser> futureTask = theardpool.submit(() -> FileHelper.loadConfigFromFile());
-//        User.DataUser rs = FileHelper.loadConfigFromFile();
-
-        while (!futureTask.isDone()) {
-            System.out.println("Loadin Session..."); 
-        }
-        
-        User.DataUser rs = null;
-        try {
-            rs = futureTask.get();
-        } catch (InterruptedException | ExecutionException ex) {
-            Logger.getLogger(PagesController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-                
-        this.setUser(rs);
-        
-        this.reset();
-        if (this.user != null){
-            switch(this.user.getTypeUser()){
-                case 1:
-                    this.viewAdminPage();
-                    break;
-                
-                case 2:
-                    this.viewPengirimPage();
-                    break;
-            }
-        }else{
-            this.viewLoginPage();
-        }
+        this.addBarang.setVisible(false);
+        this.listBarang.setVisible(false);
+        this.registAdmin.setVisible(false);
+        this.registKirim.setVisible(false);
+        this.registKurir.setVisible(false);
+        this.registOpt.setVisible(false);
+        this.kurir.setVisible(false);
+        this.barangPengirim.setVisible(false);
+        this.barangKurir.setVisible(false);
     }
     
     public void viewListBarang(){
@@ -138,6 +156,13 @@ public class PagesController implements Serializable{
         this.listBarang.setVisible(true);
         this.addBarang.setVisible(false);
         this.login.setVisible(false);
+        this.registAdmin.setVisible(false);
+        this.registKirim.setVisible(false);
+        this.registKurir.setVisible(false);
+        this.registOpt.setVisible(false);
+        this.kurir.setVisible(false);
+        this.barangPengirim.setVisible(false);
+        this.barangKurir.setVisible(false);
     }
     
     public void viewAddBarang(){
@@ -150,6 +175,13 @@ public class PagesController implements Serializable{
         this.listBarang.setVisible(false);
         this.addBarang.setVisible(true);
         this.login.setVisible(false);
+        this.registAdmin.setVisible(false);
+        this.registKirim.setVisible(false);
+        this.registKurir.setVisible(false);
+        this.registOpt.setVisible(false);
+        this.kurir.setVisible(false);
+        this.barangPengirim.setVisible(false);
+        this.barangKurir.setVisible(false);
     }
     
     public void viewRegistration(){
@@ -160,7 +192,133 @@ public class PagesController implements Serializable{
         this.dashboardadmin.setVisible(false);
         this.dashboardpengirim.setVisible(false);
         this.login.setVisible(false);
-        this.regist.setVisible(true);
+        this.registAdmin.setVisible(false);
+        this.registKirim.setVisible(false);
+        this.registKurir.setVisible(false);
+        this.registOpt.setVisible(false);
+        this.kurir.setVisible(false);
+        this.barangPengirim.setVisible(false);
+        this.barangKurir.setVisible(false);
+    }
+    
+    
+    public void viewRegistOption(){
+        this.reset();
+        
+        this.home.setVisible(false);
+        this.about.setVisible(false);
+        this.dashboardadmin.setVisible(false);
+        this.dashboardpengirim.setVisible(false);
+        this.login.setVisible(false);
+        this.registAdmin.setVisible(false);
+        this.registKirim.setVisible(false);
+        this.registKurir.setVisible(false);
+        this.registOpt.setVisible(true);
+        this.kurir.setVisible(false);
+        this.barangPengirim.setVisible(false);
+        this.barangKurir.setVisible(false);
+    }
+    
+    public void viewRegistAdmin(){
+        this.reset();
+        
+        this.home.setVisible(false);
+        this.about.setVisible(false);
+        this.dashboardadmin.setVisible(false);
+        this.dashboardpengirim.setVisible(false);
+        this.login.setVisible(false);
+        this.registAdmin.setVisible(true);
+        this.registKirim.setVisible(false);
+        this.registKurir.setVisible(false);
+        this.registOpt.setVisible(false);
+        this.kurir.setVisible(false);
+        this.barangPengirim.setVisible(false);
+        this.barangKurir.setVisible(false);
+    }
+    
+    public void viewRegistPengirim(){
+        this.reset();
+        
+        this.home.setVisible(false);
+        this.about.setVisible(false);
+        this.dashboardadmin.setVisible(false);
+        this.dashboardpengirim.setVisible(false);
+        this.login.setVisible(false);
+        this.registAdmin.setVisible(false);
+        this.registKirim.setVisible(true);
+        this.registKurir.setVisible(false);
+        this.registOpt.setVisible(false);
+        this.kurir.setVisible(false);
+        this.barangPengirim.setVisible(false);
+        this.barangKurir.setVisible(false);
+    }
+    
+    public void viewRegistKurir(){
+        this.reset();
+        
+        this.home.setVisible(false);
+        this.about.setVisible(false);
+        this.dashboardadmin.setVisible(false);
+        this.dashboardpengirim.setVisible(false);
+        this.login.setVisible(false);
+        this.registAdmin.setVisible(false);
+        this.registKirim.setVisible(false);
+        this.registKurir.setVisible(true);
+        this.registOpt.setVisible(false);
+        this.kurir.setVisible(false);
+        this.barangPengirim.setVisible(false);
+        this.barangKurir.setVisible(false);
+    }
+    
+    public void viewDashboardKurir(){
+        this.reset();
+        
+        this.home.setVisible(false);
+        this.about.setVisible(false);
+        this.dashboardadmin.setVisible(false);
+        this.dashboardpengirim.setVisible(false);
+        this.login.setVisible(false);
+        this.registAdmin.setVisible(false);
+        this.registKirim.setVisible(false);
+        this.registKurir.setVisible(false);
+        this.registOpt.setVisible(false);
+        this.kurir.setVisible(true);
+        this.barangPengirim.setVisible(false);
+        this.barangKurir.setVisible(false);
+    }
+    
+    public void viewBarangPengirim(){
+        this.reset();
+        
+        this.home.setVisible(false);
+        this.about.setVisible(false);
+        this.dashboardadmin.setVisible(false);
+        this.dashboardpengirim.setVisible(false);
+        this.login.setVisible(false);
+        this.registAdmin.setVisible(false);
+        this.registKirim.setVisible(false);
+        this.registKurir.setVisible(false);
+        this.registOpt.setVisible(false);
+        this.kurir.setVisible(false);
+        this.barangPengirim.setVisible(true);
+        this.barangKurir.setVisible(false);
+    }
+    
+    public void viewBarangKurir(){
+        this.reset();
+        
+        this.home.setVisible(false);
+        this.about.setVisible(false);
+        this.dashboardadmin.setVisible(false);
+        this.dashboardpengirim.setVisible(false);
+        this.login.setVisible(false);
+        this.registAdmin.setVisible(false);
+        this.registKirim.setVisible(false);
+        this.registKurir.setVisible(false);
+        this.registOpt.setVisible(false);
+        this.kurir.setVisible(false);
+        this.barangPengirim.setVisible(false);
+        this.barangKurir.setVisible(true);
     }
     
 //    Logic?

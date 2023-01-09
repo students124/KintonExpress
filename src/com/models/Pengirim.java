@@ -12,7 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.io.Serializable;
 import com.interfaceable.*;
-import com.helper.FileHelper;
+import com.helper.SessionHelper;
 import java.sql.PreparedStatement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,7 +33,7 @@ public class Pengirim extends User{
             Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/kintonexpress", "root", "");
             Statement stmt = connect.createStatement();
             
-            ResultSet rs = stmt.executeQuery("SELECT * FROM user WHERE userId = '" + id  + "'");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM pengirim WHERE userId = '" + id  + "'");
             
             while(rs.next()){
                 result = new DataUser(rs.getString("nama"), rs.getString("userId"), rs.getInt("userType"));
@@ -47,7 +47,7 @@ public class Pengirim extends User{
     }
 
     @Override
-    public boolean register(String id, String nama, String no_telp, int gender, int userType) {
+    public boolean register(String id, String nama, String no_telp, String gender) {
         try {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
@@ -55,16 +55,15 @@ public class Pengirim extends User{
                 Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            String query = "INSERT INTO user(userId,nama,gender,userType,no_telp) VALUES(?,?,?,?,?)";
+            String query = "INSERT INTO pengirim(userId, nama,no_telp,gender) VALUES(?,?,?,?)";
             
             Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/kintonexpress", "root", "");
             PreparedStatement prepStmt = connect.prepareStatement(query);
 //            prepStmt.setInt(1, Integer.parseInt(nilai));
             prepStmt.setString(1, id);
             prepStmt.setString(2, nama);
-            prepStmt.setInt(3, gender);
-            prepStmt.setInt(4, userType);
-            prepStmt.setString(5, no_telp);
+            prepStmt.setString(3, no_telp);
+            prepStmt.setString(4, gender);
 
             prepStmt.executeUpdate();
 
@@ -87,7 +86,7 @@ public class Pengirim extends User{
             Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/kintonexpress", "root", "");
             Statement stmt = connect.createStatement();
             
-            ResultSet rs = stmt.executeQuery("SELECT * FROM user");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM pengirim");
             
             while(rs.next()){
                 result.add(new DataUser(rs.getString("nama"),rs.getString("userId"),rs.getInt("userType")));

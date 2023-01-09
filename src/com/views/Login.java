@@ -10,7 +10,7 @@ import com.models.*;
 import javax.swing.*;  
 import java.awt.*;  
 import java.awt.event.*;
-import com.helper.FileHelper;
+import com.helper.SessionHelper;
 import java.io.*;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -173,18 +173,27 @@ public class Login extends javax.swing.JFrame implements ActionListener, Seriali
                     rs = new Admin().login(id);
                     break;
                 case "Pengirim":
-                    rs = new Admin().login(id);
+                    rs = new Pengirim().login(id);
                     break;
                 case "Kurir":
-                    rs = new Admin().login(id);
+                    rs = new Kurir().login(id);
                     break;
             }
             
             if (rs != null){
-                FileHelper.saveConfigToFile(rs);
+                SessionHelper.saveConfigToFile(rs);
                 try {
-                    new PagesController().viewUserMenu();
-                    dispose();
+                    switch (role){
+                        case "Admin":
+                            new PagesController().viewAdminPage();
+                            break;
+                        case "Pengirim":
+                            new PagesController().viewPengirimPage();
+                            break;
+                        case "Kurir":
+                            new PagesController().viewDashboardKurir();
+                            break;
+                    }
                 } catch (ClassNotFoundException | SQLException ex) {
                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 }

@@ -18,24 +18,18 @@ public abstract class  User {
      */
     public abstract ArrayList<User.DataUser> getAll();
     public abstract User.DataUser login(String id);
-    public abstract boolean register(String id, String nama,String no_telp ,int gender, int userType);
+    public abstract boolean register(String id, String nama,String no_telp ,String gender);
     
     public class DataUser implements Serializable{
         private String nama,id;
-        private int typeUser;
         
         public DataUser(String nama, String id, int typeUser){
             this.nama = nama;
             this.id = id;
-            this.typeUser = typeUser;
         }        
         
         public String getId(){
             return this.id;
-        }
-        
-        public int getTypeUser(){
-            return this.typeUser;
         }
         
         public String getNama(){

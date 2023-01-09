@@ -11,14 +11,14 @@ import com.models.User;
  *
  * @author iolux
  */
-public class FileHelper implements Serializable{
+public class SessionHelper implements Serializable{
     private static final String CONFIG_FILENAME = "session.txt";
     
     public static void saveConfigToFile(User.DataUser appC) {
         try{
             ObjectOutputStream OOS;
             try (FileOutputStream FOS 
-                    = new FileOutputStream(FileHelper.CONFIG_FILENAME)) {
+                    = new FileOutputStream(SessionHelper.CONFIG_FILENAME)) {
                 OOS = new ObjectOutputStream(FOS);
                 OOS.writeObject(appC);
                 FOS.close();
@@ -34,7 +34,7 @@ public class FileHelper implements Serializable{
     public static User.DataUser loadConfigFromFile() throws ClassNotFoundException{
         try{
             FileInputStream FIS 
-                    = new FileInputStream(FileHelper.CONFIG_FILENAME);
+                    = new FileInputStream(SessionHelper.CONFIG_FILENAME);
             ObjectInputStream OIS 
                     = new ObjectInputStream(FIS);
             
