@@ -5,32 +5,30 @@
  */
 package com.views;
 
-import com.controllers.PagesController;
-import com.helper.*;
+import java.io.*;
 import java.awt.event.*;
-import java.io.Serializable;
+import com.models.Kurir;
+import com.controllers.PagesController;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 
 /**
  *
  * @author LENOVO
  */
-public class DashboardKurir extends javax.swing.JFrame implements ActionListener, Serializable {
+public class UpdateLocation extends javax.swing.JFrame implements ActionListener {
 
     /**
-     * Creates new form DashboardKurir
+     * Creates new form UpdateLocation
      */
-    public DashboardKurir() {
+    public UpdateLocation() {
         initComponents();
         
-        this.jLabel3.setText(OperationalHelper.operational());
+        this.jLabel3.setText(Kurir.getLastLocation());
         
         this.jButton1.addActionListener(this);
         this.jButton2.addActionListener(this);
-        this.jButton3.addActionListener(this);
     }
 
     /**
@@ -43,25 +41,26 @@ public class DashboardKurir extends javax.swing.JFrame implements ActionListener
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Kurir Page");
+        jLabel1.setText("Update Location :");
 
-        jButton1.setText("Logout");
-
-        jButton2.setText("Update Location");
-
-        jButton3.setText("List Barang");
-
-        jLabel2.setText("Store Is : ");
+        jLabel2.setText("Last Location : ");
 
         jLabel3.setText("jLabel3");
+
+        jButton1.setText("Update");
+
+        jButton2.setText("Back");
+
+        jLabel4.setText("Input Current Location :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,76 +69,76 @@ public class DashboardKurir extends javax.swing.JFrame implements ActionListener
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(151, 151, 151)
+                        .addGap(82, 82, 82)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jLabel1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2)
-                                .addGap(65, 65, 65)
-                                .addComponent(jButton3))
+                                .addComponent(jLabel4)
+                                .addGap(37, 37, 37)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel3)
-                                .addGap(94, 94, 94)))))
-                .addContainerGap(48, Short.MAX_VALUE))
+                                .addGap(100, 100, 100)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(48, 48, 48)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(99, 99, 99)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(193, 193, 193)
+                        .addComponent(jLabel1)))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
-                .addGap(24, 24, 24)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addGap(69, 69, 69)
-                .addComponent(jButton1)
-                .addContainerGap(62, Short.MAX_VALUE))
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(30, 30, 30))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void actionPerformed(ActionEvent ae) {
         if(ae.getSource() == this.jButton1){
-            SessionHelper.saveConfigToFile(null);
+            String location;
+            
+            location = this.jTextField1.getText();
+            
             try {
-                new PagesController().viewLoginPage();
-            } catch (ClassNotFoundException | SQLException ex) {
-                Logger.getLogger(DashboardAdmin.class.getName()).log(Level.SEVERE, null, ex);
+                new Kurir().updateLocation(location);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(UpdateLocation.class.getName()).log(Level.SEVERE, null, ex);
             }
-            dispose();
         }else if(ae.getSource() == this.jButton2){
             try {
-                new PagesController().viewUpdateLocation();
+                new PagesController().viewDashboardKurir();
             } catch (ClassNotFoundException | SQLException ex) {
-                Logger.getLogger(DashboardKurir.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }else if(ae.getSource() == this.jButton3){
-            try {
-                new PagesController().viewBarangKurir();
-            } catch (ClassNotFoundException | SQLException ex) {
-                Logger.getLogger(DashboardKurir.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UpdateLocation.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             dispose();

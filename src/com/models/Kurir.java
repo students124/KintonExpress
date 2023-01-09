@@ -22,6 +22,16 @@ import java.util.logging.Logger;
  * @author iolux
  */
 public class Kurir extends User {
+    
+    private String tipe_kendaraan;
+    
+    public Kurir(){
+        this.tipe_kendaraan = "";
+    }
+    
+    public Kurir(String tipe){
+        this.tipe_kendaraan = tipe;
+    }
 
     @Override
     public DataUser login(String id) {
@@ -104,4 +114,52 @@ public class Kurir extends User {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
+    public void updateLocation(String location) throws ClassNotFoundException{
+        try {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            DataUser data = SessionHelper.loadConfigFromFile();
+            
+            String query = "UPDATE kurir SET lokasi = ? WHERE userId = '" + data.getId() + "'";
+            
+            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/kintonexpress", "root", "");
+            PreparedStatement prepStmt = connect.prepareStatement(query);
+            prepStmt.setString(1, location);
+
+            prepStmt.executeUpdate();
+
+            connect.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static String getLastLocation(){
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            
+            String result = null;
+            
+            DataUser data = SessionHelper.loadConfigFromFile();
+            
+            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/kintonexpress", "root", "");
+            Statement stmt = connect.createStatement();
+            
+            ResultSet rs = stmt.executeQuery("SELECT * FROM kurir WHERE userId = '" + data.getId()  + "'");
+            
+            while(rs.next()){
+                result = rs.getString("location");
+            }
+            
+            return result;
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

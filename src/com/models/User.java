@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author iolux
  */
-public abstract class  User {
+public abstract class User implements Serializable {
 
     /**
      *

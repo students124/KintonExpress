@@ -35,6 +35,8 @@ public class PagesController implements Serializable{
     private ListBarangPengirim barangPengirim;
     private ListBarangKurir barangKurir;
     private Rewards reward;
+    private Profile profil;
+    private UpdateLocation location;
 
     
     public PagesController() throws ClassNotFoundException, SQLException{
@@ -53,6 +55,8 @@ public class PagesController implements Serializable{
         this.barangPengirim = new ListBarangPengirim();
         this.barangKurir = new ListBarangKurir();
         this.reward = new Rewards();
+        this.profil = new Profile();
+        this.location = new UpdateLocation();
     }
        
 //    Views
@@ -72,6 +76,8 @@ public class PagesController implements Serializable{
         this.barangPengirim.setVisible(false);
         this.barangKurir.setVisible(false);
         this.reward.setVisible(false);
+        this.profil.setVisible(false);
+        this.location.setVisible(false);
     }
     
     public void viewLoginPage(){
@@ -92,6 +98,8 @@ public class PagesController implements Serializable{
         this.barangPengirim.setVisible(false);
         this.barangKurir.setVisible(false);
         this.reward.setVisible(false);
+        this.profil.setVisible(false);
+        this.location.setVisible(false);
     }
     
     public void viewAboutPage(){
@@ -112,6 +120,8 @@ public class PagesController implements Serializable{
         this.barangPengirim.setVisible(false);
         this.barangKurir.setVisible(false);
         this.reward.setVisible(false);
+        this.profil.setVisible(false);
+        this.location.setVisible(false);
     }
     
     public void viewAdminPage(){
@@ -132,6 +142,8 @@ public class PagesController implements Serializable{
         this.barangPengirim.setVisible(false);
         this.barangKurir.setVisible(false);
         this.reward.setVisible(false);
+        this.profil.setVisible(false);
+        this.location.setVisible(false);
     }
     
     public void viewPengirimPage(){
@@ -152,6 +164,8 @@ public class PagesController implements Serializable{
         this.barangPengirim.setVisible(false);
         this.barangKurir.setVisible(false);
         this.reward.setVisible(false);
+        this.profil.setVisible(false);
+        this.location.setVisible(false);
     }
     
     public void viewListBarang(){
@@ -172,6 +186,8 @@ public class PagesController implements Serializable{
         this.barangPengirim.setVisible(false);
         this.barangKurir.setVisible(false);
         this.reward.setVisible(false);
+        this.profil.setVisible(false);
+        this.location.setVisible(false);
     }
     
     public void viewAddBarang(){
@@ -192,6 +208,8 @@ public class PagesController implements Serializable{
         this.barangPengirim.setVisible(false);
         this.barangKurir.setVisible(false);
         this.reward.setVisible(false);
+        this.profil.setVisible(false);
+        this.location.setVisible(false);
     }
     
     public void viewRegistration(){
@@ -210,6 +228,8 @@ public class PagesController implements Serializable{
         this.barangPengirim.setVisible(false);
         this.barangKurir.setVisible(false);
         this.reward.setVisible(false);
+        this.profil.setVisible(false);
+        this.location.setVisible(false);
     }
     
     
@@ -229,6 +249,8 @@ public class PagesController implements Serializable{
         this.barangPengirim.setVisible(false);
         this.barangKurir.setVisible(false);
         this.reward.setVisible(false);
+        this.profil.setVisible(false);
+        this.location.setVisible(false);
     }
     
     public void viewRegistAdmin(){
@@ -247,6 +269,8 @@ public class PagesController implements Serializable{
         this.barangPengirim.setVisible(false);
         this.barangKurir.setVisible(false);
         this.reward.setVisible(false);
+        this.profil.setVisible(false);
+        this.location.setVisible(false);
     }
     
     public void viewRegistPengirim(){
@@ -265,6 +289,8 @@ public class PagesController implements Serializable{
         this.barangPengirim.setVisible(false);
         this.barangKurir.setVisible(false);
         this.reward.setVisible(false);
+        this.profil.setVisible(false);
+        this.location.setVisible(false);
     }
     
     public void viewRegistKurir(){
@@ -283,6 +309,8 @@ public class PagesController implements Serializable{
         this.barangPengirim.setVisible(false);
         this.barangKurir.setVisible(false);
         this.reward.setVisible(false);
+        this.profil.setVisible(false);
+        this.location.setVisible(false);
     }
     
     public void viewDashboardKurir(){
@@ -301,6 +329,8 @@ public class PagesController implements Serializable{
         this.barangPengirim.setVisible(false);
         this.barangKurir.setVisible(false);
         this.reward.setVisible(false);
+        this.profil.setVisible(false);
+        this.location.setVisible(false);
     }
     
     public void viewBarangPengirim(){
@@ -319,6 +349,8 @@ public class PagesController implements Serializable{
         this.barangPengirim.setVisible(true);
         this.barangKurir.setVisible(false);
         this.reward.setVisible(false);
+        this.profil.setVisible(false);
+        this.location.setVisible(false);
     }
     
     public void viewBarangKurir(){
@@ -337,6 +369,8 @@ public class PagesController implements Serializable{
         this.barangPengirim.setVisible(false);
         this.barangKurir.setVisible(true);
         this.reward.setVisible(false);
+        this.profil.setVisible(false);
+        this.location.setVisible(false);
     }
     
     public void viewRewards(){
@@ -355,7 +389,50 @@ public class PagesController implements Serializable{
         this.barangPengirim.setVisible(false);
         this.barangKurir.setVisible(false);
         this.reward.setVisible(true);
+        this.profil.setVisible(false);
+        this.location.setVisible(false);
     }
+    
+    public void viewProfile(){
+        this.reset();
+        
+        this.home.setVisible(false);
+        this.about.setVisible(false);
+        this.dashboardadmin.setVisible(false);
+        this.dashboardpengirim.setVisible(false);
+        this.login.setVisible(false);
+        this.registAdmin.setVisible(false);
+        this.registKirim.setVisible(false);
+        this.registKurir.setVisible(false);
+        this.registOpt.setVisible(false);
+        this.kurir.setVisible(false);
+        this.barangPengirim.setVisible(false);
+        this.barangKurir.setVisible(false);
+        this.reward.setVisible(false);
+        this.profil.setVisible(true);
+        this.location.setVisible(false);
+    }
+    
+    public void viewUpdateLocation(){
+        this.reset();
+        
+        this.home.setVisible(false);
+        this.about.setVisible(false);
+        this.dashboardadmin.setVisible(false);
+        this.dashboardpengirim.setVisible(false);
+        this.login.setVisible(false);
+        this.registAdmin.setVisible(false);
+        this.registKirim.setVisible(false);
+        this.registKurir.setVisible(false);
+        this.registOpt.setVisible(false);
+        this.kurir.setVisible(false);
+        this.barangPengirim.setVisible(false);
+        this.barangKurir.setVisible(false);
+        this.reward.setVisible(false);
+        this.profil.setVisible(false);
+        this.location.setVisible(true);
+    }
+    
     
 //    Logic?
     

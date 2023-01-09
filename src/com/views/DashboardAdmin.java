@@ -9,7 +9,7 @@ import com.models.User;
 import javax.swing.*;  
 import java.awt.*;  
 import java.awt.event.*;
-import com.helper.SessionHelper;
+import com.helper.*;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -27,6 +27,8 @@ public class DashboardAdmin extends javax.swing.JFrame implements ActionListener
     public DashboardAdmin() {
         initComponents();
         
+        this.jLabel3.setText(OperationalHelper.operational());
+        
         this.jButton1.addActionListener(this);
         this.jButton2.addActionListener(this);
     }
@@ -43,6 +45,8 @@ public class DashboardAdmin extends javax.swing.JFrame implements ActionListener
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,6 +55,10 @@ public class DashboardAdmin extends javax.swing.JFrame implements ActionListener
         jButton1.setText("Logout");
 
         jButton2.setText("List Barang");
+
+        jLabel2.setText("Store Is : ");
+
+        jLabel3.setText("jLabel3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,7 +73,12 @@ public class DashboardAdmin extends javax.swing.JFrame implements ActionListener
                         .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(141, 141, 141)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)))
                 .addContainerGap(96, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -73,7 +86,11 @@ public class DashboardAdmin extends javax.swing.JFrame implements ActionListener
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(104, 104, 104)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addGap(67, 67, 67)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -89,6 +106,8 @@ public class DashboardAdmin extends javax.swing.JFrame implements ActionListener
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 
     @Override
