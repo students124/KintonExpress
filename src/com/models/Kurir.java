@@ -36,7 +36,7 @@ public class Kurir extends User {
             ResultSet rs = stmt.executeQuery("SELECT * FROM kurir WHERE userId = '" + id  + "'");
             
             while(rs.next()){
-                result = new DataUser(rs.getString("nama"), rs.getString("userId"), rs.getInt("userType"));
+                result = new DataUser(rs.getString("nama"), rs.getString("userId"));
             }
             
             return result;
@@ -89,7 +89,7 @@ public class Kurir extends User {
             ResultSet rs = stmt.executeQuery("SELECT * FROM user");
             
             while(rs.next()){
-                result.add(new DataUser(rs.getString("nama"),rs.getString("userId"),rs.getInt("userType")));
+                result.add(new DataUser(rs.getString("nama"),rs.getString("userId")));
             }
             
             return result;

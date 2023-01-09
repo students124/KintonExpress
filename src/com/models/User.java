@@ -23,7 +23,7 @@ public abstract class  User {
     public class DataUser implements Serializable{
         private String nama,id;
         
-        public DataUser(String nama, String id, int typeUser){
+        public DataUser(String nama, String id){
             this.nama = nama;
             this.id = id;
         }        

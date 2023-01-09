@@ -21,7 +21,8 @@ import java.util.logging.Logger;
  *
  * @author iolux
  */
-public class Pengirim extends User{
+public class Pengirim extends User implements Memberable, Serializable{
+    private boolean memberStatus = false;
 
     @Override
     public DataUser login(String id) {
@@ -36,7 +37,7 @@ public class Pengirim extends User{
             ResultSet rs = stmt.executeQuery("SELECT * FROM pengirim WHERE userId = '" + id  + "'");
             
             while(rs.next()){
-                result = new DataUser(rs.getString("nama"), rs.getString("userId"), rs.getInt("userType"));
+                result = new DataUser(rs.getString("nama"), rs.getString("userId"));
             }
             
             return result;
@@ -89,7 +90,7 @@ public class Pengirim extends User{
             ResultSet rs = stmt.executeQuery("SELECT * FROM pengirim");
             
             while(rs.next()){
-                result.add(new DataUser(rs.getString("nama"),rs.getString("userId"),rs.getInt("userType")));
+                result.add(new DataUser(rs.getString("nama"),rs.getString("userId")));
             }
             
             return result;
@@ -99,4 +100,47 @@ public class Pengirim extends User{
         return null;
     }
     
+    @Override
+    public boolean userMember() {
+        this.memberStatus = true;
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            
+            DataUser data = SessionHelper.loadConfigFromFile();
+            String query = ""; 
+            if(data!=null){
+                query = "UPDATE pengirim SET subscribe=? WHERE userId='" + data.getId() + "'";
+            }else{
+                System.out.println("Error");
+            }
+            
+            
+            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/kintonexpress", "root", "");
+            PreparedStatement prepStmt = connect.prepareStatement(query);
+//            prepStmt.setInt(1, Integer.parseInt(nilai));
+            prepStmt.setBoolean(1, memberStatus);
+            
+            prepStmt.executeUpdate();
+            
+            connect.close();
+            
+            return true;
+        } catch (ClassNotFoundException E){
+            System.out.println(E);
+        } catch (SQLException ex) {
+            Logger.getLogger(Pengirim.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return false;
+    } 
+
+    @Override
+    public void feedback() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void rewards() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

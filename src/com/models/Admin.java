@@ -36,7 +36,7 @@ public class Admin extends User{
             ResultSet rs = stmt.executeQuery("SELECT * FROM admin WHERE userId = '" + id  + "'");
             
             while(rs.next()){
-                result = new DataUser(rs.getString("nama"), rs.getString("userId"), rs.getInt("userType"));
+                result = new DataUser(rs.getString("nama"), rs.getString("userId"));
             }
             
             return result;
@@ -46,6 +46,7 @@ public class Admin extends User{
         return null;
     }
 
+    @Override
     public boolean register(String id, String nama, String no_telp, String gender) {
         try {
             try {
@@ -88,7 +89,7 @@ public class Admin extends User{
             ResultSet rs = stmt.executeQuery("SELECT * FROM admin");
             
             while(rs.next()){
-                result.add(new DataUser(rs.getString("nama"),rs.getString("userId"),rs.getInt("userType")));
+                result.add(new DataUser(rs.getString("nama"),rs.getString("userId")));
             }
             
             return result;

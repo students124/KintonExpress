@@ -26,6 +26,8 @@ public class DashboardPengirim extends javax.swing.JFrame implements ActionListe
         initComponents();
         
         this.jButton1.addActionListener(this);
+        this.jButton2.addActionListener(this);
+        this.jButton3.addActionListener(this);
     }
 
     /**
@@ -39,6 +41,8 @@ public class DashboardPengirim extends javax.swing.JFrame implements ActionListe
 
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,25 +50,42 @@ public class DashboardPengirim extends javax.swing.JFrame implements ActionListe
 
         jButton1.setText("Logout");
 
+        jButton2.setText("Subscribe");
+
+        jButton3.setText("Rewards");
+        jButton3.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(136, 136, 136)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton1))
-                .addContainerGap(168, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(136, 136, 136)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(jButton1)
+                        .addGap(68, 68, 68)
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(135, 135, 135)
+                        .addComponent(jButton3)))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(105, 105, 105)
-                .addComponent(jButton1)
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addGap(108, 108, 108)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(49, 49, 49)
+                .addComponent(jButton3)
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         pack();
@@ -74,6 +95,8 @@ public class DashboardPengirim extends javax.swing.JFrame implements ActionListe
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 
@@ -83,6 +106,21 @@ public class DashboardPengirim extends javax.swing.JFrame implements ActionListe
             SessionHelper.saveConfigToFile(null);
             try {
                 new PagesController().viewLoginPage();
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(DashboardPengirim.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            dispose();
+        }else if(ae.getSource() == this.jButton2){
+            try {
+                if(new PagesController().member()){
+                    jButton3.setEnabled(true);
+                }
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(DashboardPengirim.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else if(ae.getSource() == this.jButton3){
+            try {
+                new PagesController().viewRewards();
             } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(DashboardPengirim.class.getName()).log(Level.SEVERE, null, ex);
             }
