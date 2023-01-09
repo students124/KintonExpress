@@ -11,5 +11,5 @@ package com.interfaceable;
 public interface Memberable {
     public abstract void feedback();
     public abstract void rewards();
-    public abstract void userMember();
+    public abstract boolean userMember();
 }
