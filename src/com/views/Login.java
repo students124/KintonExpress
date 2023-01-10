@@ -186,12 +186,15 @@ public class Login extends javax.swing.JFrame implements ActionListener, Seriali
                     switch (role){
                         case "Admin":
                             new PagesController().viewAdminPage();
+                            dispose();
                             break;
                         case "Pengirim":
                             new PagesController().viewPengirimPage();
+                            dispose();
                             break;
                         case "Kurir":
                             new PagesController().viewDashboardKurir();
+                            dispose();
                             break;
                     }
                 } catch (ClassNotFoundException | SQLException ex) {

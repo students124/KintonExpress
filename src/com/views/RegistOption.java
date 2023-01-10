@@ -117,14 +117,14 @@ public class RegistOption extends javax.swing.JFrame implements ActionListener {
             dispose();
         }else if(ae.getSource() == this.jButton2){
             try {
-                new PagesController().viewRegistKurir();
+                new PagesController().viewRegistPengirim();
             } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(RegistOption.class.getName()).log(Level.SEVERE, null, ex);
             }
             dispose();
         }else if(ae.getSource() == this.jButton3){
             try {
-                new PagesController().viewRegistPengirim();
+                new PagesController().viewRegistKurir();
             } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(RegistOption.class.getName()).log(Level.SEVERE, null, ex);
             }

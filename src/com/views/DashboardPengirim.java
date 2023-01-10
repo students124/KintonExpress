@@ -164,14 +164,8 @@ public class DashboardPengirim extends javax.swing.JFrame implements ActionListe
             }
             dispose();
         }else if(ae.getSource() == this.jButton2){
-            try {
-                if(new PagesController().member()){
-                    jButton3.setEnabled(true);
-                }
-            } catch (ClassNotFoundException | SQLException ex) {
-                Logger.getLogger(DashboardPengirim.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            dispose();
+            jButton3.setEnabled(true);
+               
         }else if(ae.getSource() == this.jButton3){
             try {
                 new PagesController().viewRewards();

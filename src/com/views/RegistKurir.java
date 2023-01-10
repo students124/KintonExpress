@@ -212,7 +212,7 @@ public class RegistKurir extends javax.swing.JFrame implements ActionListener{
             }
         }else if(ae.getSource() == this.jButton2){
             try {
-                new PagesController().viewRegistOption();
+                new PagesController().viewDashboardKurir();
             } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(RegistOption.class.getName()).log(Level.SEVERE, null, ex);
             }

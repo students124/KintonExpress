@@ -193,7 +193,7 @@ public class RegistAdmin extends javax.swing.JFrame implements ActionListener {
             }
         }else if(ae.getSource() == this.jButton2){
             try {
-                new PagesController().viewRegistOption();
+                new PagesController().viewPengirimPage();
             } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(RegistOption.class.getName()).log(Level.SEVERE, null, ex);
             }

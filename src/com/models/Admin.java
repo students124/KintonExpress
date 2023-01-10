@@ -33,10 +33,10 @@ public class Admin extends User{
             Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/kintonexpress", "root", "");
             Statement stmt = connect.createStatement();
             
-            ResultSet rs = stmt.executeQuery("SELECT * FROM admin WHERE userId = '" + id  + "'");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM admin WHERE id = '" + id  + "'");
             
             while(rs.next()){
-                result = new DataUser(rs.getString("nama"), rs.getString("userId"));
+                result = new DataUser(rs.getString("nama"), rs.getString("id"));
             }
             
             return result;

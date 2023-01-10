@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 09, 2023 at 03:13 PM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 7.4.30
+-- Host: localhost
+-- Generation Time: Jan 10, 2023 at 07:52 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,7 @@ CREATE TABLE `admin` (
   `nama` varchar(100) NOT NULL,
   `no_telp` varchar(20) NOT NULL,
   `gender` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admin`
@@ -54,7 +54,7 @@ CREATE TABLE `barang` (
   `kuantitas_barang` int(11) DEFAULT NULL,
   `harga_barang` double DEFAULT NULL,
   `tipe_barang` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `barang`
@@ -69,23 +69,17 @@ INSERT INTO `barang` (`id_barang`, `nama_barang`, `berat_barang`, `kuantitas_bar
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kurir_antar`
+-- Table structure for table `kurir`
 --
 
-CREATE TABLE `kurir_antar` (
+CREATE TABLE `kurir` (
   `userId` varchar(10) NOT NULL,
-  `tipe_kendaraan` varchar(50) DEFAULT NULL,
-  `nama` varchar(100) NOT NULL,
+  `tipe_kendaraan` varchar(50) NOT NULL,
+  `nama` varchar(50) NOT NULL,
   `no_telp` varchar(20) NOT NULL,
-  `gender` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `kurir_antar`
---
-
-INSERT INTO `kurir_antar` (`userId`, `tipe_kendaraan`, `nama`, `no_telp`, `gender`) VALUES
-('A001', 'Motor', 'Miharu', '082192066520', 'Laki-Laki');
+  `gender` varchar(20) NOT NULL,
+  `location` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -96,41 +90,18 @@ INSERT INTO `kurir_antar` (`userId`, `tipe_kendaraan`, `nama`, `no_telp`, `gende
 CREATE TABLE `pengirim` (
   `userId` varchar(5) NOT NULL,
   `id_barang` int(11) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `no_telp` varchar(20) NOT NULL,
-  `gender` varchar(15) NOT NULL,
-  `subscribe` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `nama` varchar(50) DEFAULT NULL,
+  `no_telp` varchar(20) DEFAULT NULL,
+  `gender` varchar(15) DEFAULT NULL,
+  `subscribe` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `pengirim`
 --
 
 INSERT INTO `pengirim` (`userId`, `id_barang`, `nama`, `no_telp`, `gender`, `subscribe`) VALUES
-('A001', 4, 'Miharu', '082192066520', 'Laki-Laki', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-
-CREATE TABLE `user` (
-  `userId` varchar(5) NOT NULL,
-  `nama` varchar(80) DEFAULT NULL,
-  `gender` int(11) DEFAULT NULL,
-  `userType` int(11) DEFAULT NULL,
-  `no_telp` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`userId`, `nama`, `gender`, `userType`, `no_telp`) VALUES
-('A001', 'Admin', 1, 1, NULL),
-('A002', 'Admin1', 0, 1, '08123456'),
-('P001', 'Pengirim', 1, 2, NULL);
+('A001', 1, 'Miharu', '081234', 'Laki-Laki', 1);
 
 --
 -- Indexes for dumped tables
@@ -143,23 +114,17 @@ ALTER TABLE `barang`
   ADD PRIMARY KEY (`id_barang`);
 
 --
--- Indexes for table `kurir_antar`
+-- Indexes for table `kurir`
 --
-ALTER TABLE `kurir_antar`
-  ADD KEY `userId` (`userId`);
+ALTER TABLE `kurir`
+  ADD PRIMARY KEY (`userId`);
 
 --
 -- Indexes for table `pengirim`
 --
 ALTER TABLE `pengirim`
-  ADD KEY `userId` (`userId`),
+  ADD PRIMARY KEY (`userId`),
   ADD KEY `id_barang` (`id_barang`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`userId`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -176,17 +141,10 @@ ALTER TABLE `barang`
 --
 
 --
--- Constraints for table `kurir_antar`
---
-ALTER TABLE `kurir_antar`
-  ADD CONSTRAINT `kurir_antar_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`);
-
---
 -- Constraints for table `pengirim`
 --
 ALTER TABLE `pengirim`
-  ADD CONSTRAINT `pengirim_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`),
-  ADD CONSTRAINT `pengirim_ibfk_2` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`);
+  ADD CONSTRAINT `pengirim_ibfk_1` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
