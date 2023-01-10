@@ -124,7 +124,7 @@ public class Kurir extends User implements Serializable{
             
             DataUser data = SessionHelper.loadConfigFromFile();
             
-            String query = "UPDATE kurir SET lokasi = ? WHERE userId = '" + data.getId() + "'";
+            String query = "UPDATE kurir SET location = ? WHERE userId = '" + data.getId() + "'";
             
             Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/kintonexpress", "root", "");
             PreparedStatement prepStmt = connect.prepareStatement(query);

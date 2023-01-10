@@ -12,6 +12,8 @@ import com.controllers.PagesController;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -121,7 +123,15 @@ public class UpdateLocation extends javax.swing.JFrame implements ActionListener
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
-
+    
+    public void showSuccess(String msg){
+        JLabel label = new JLabel(msg);
+        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setVerticalTextPosition(JLabel.BOTTOM);
+        label.setHorizontalTextPosition(JLabel.CENTER);
+        JOptionPane.showMessageDialog(null, label, "Success", JOptionPane.PLAIN_MESSAGE);
+    }
+    
     @Override
     public void actionPerformed(ActionEvent ae) {
         if(ae.getSource() == this.jButton1){
@@ -131,6 +141,7 @@ public class UpdateLocation extends javax.swing.JFrame implements ActionListener
             
             try {
                 new Kurir().updateLocation(location);
+                this.showSuccess("Success Update Location");
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(UpdateLocation.class.getName()).log(Level.SEVERE, null, ex);
             }
